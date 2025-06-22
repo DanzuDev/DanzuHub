@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanzuBox Upload</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">DanzuBox</div>
+      <div class="navbar-links">
+        <a href="#" class="active">Upload</a>
+        <a href="#">Files</a>
+        <a href="#">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="container">
+      <h2>📤 Upload ke <span>DanzuBox</span></h2>
+      
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📁</div>
+        <div class="upload-text">Klik atau seret file ke sini</div>
+        <div class="file-info" id="fileInfo">Tidak ada file dipilih</div>
+        <input type="file" id="fileInput" class="file-input">
+        <img id="filePreview" class="file-preview" alt="File preview">
+      </div>
+      
+      <div class="progress-bar" id="progressBar">
+        <div class="progress" id="progress"></div>
+      </div>
+      
+      <button class="btn" id="uploadBtn" disabled>Unggah File</button>
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+      
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
