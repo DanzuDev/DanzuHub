@@ -37,8 +37,6 @@ const showError = (message) => {
     setTimeout(() => {
       errorMessageEl.style.display = 'none';
     }, 5000);
-  } else {
-    alert(message);
   }
 };
 
@@ -49,14 +47,46 @@ const showSuccess = (message) => {
     setTimeout(() => {
       successMessageEl.style.display = 'none';
     }, 5000);
-  } else {
-    alert(message);
   }
 };
 
 const validatePassword = (password) => {
   return password.length >= 8;
 };
+
+// Check Authentication State
+const checkAuthState = () => {
+  onAuthStateChanged(auth, (user) => {
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (user) {
+      // User is logged in
+      if (currentPage === 'login.html' || currentPage === 'register.html') {
+        window.location.href = 'profile.html';
+      }
+      
+      // Update profile information
+      if (document.getElementById('user-email')) {
+        document.getElementById('user-email').textContent = user.email;
+      }
+      if (document.getElementById('nav-user-email')) {
+        document.getElementById('nav-user-email').textContent = user.email;
+      }
+      if (document.getElementById('account-created')) {
+        const creationDate = new Date(user.metadata.creationTime);
+        document.getElementById('account-created').textContent = creationDate.toLocaleDateString();
+      }
+    } else {
+      // User is not logged in
+      if (currentPage === 'profile.html') {
+        window.location.href = 'login.html';
+      }
+    }
+  });
+};
+
+// Initialize auth state check
+checkAuthState();
 
 // Register Functionality
 const registerForm = document.getElementById('register-form');
@@ -80,10 +110,10 @@ if (registerForm) {
     }
     
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      showSuccess('Registration successful! Redirecting to login...');
+      await createUserWithEmailAndPassword(auth, email, password);
+      showSuccess('Registration successful! Redirecting to profile...');
       setTimeout(() => {
-        window.location.href = 'login.html';
+        window.location.href = 'profile.html';
       }, 1500);
     } catch (error) {
       let errorMessage = 'Registration failed. ';
@@ -115,7 +145,7 @@ if (loginForm) {
     const password = document.getElementById('password').value;
     
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       showSuccess('Login successful! Redirecting...');
       setTimeout(() => {
         window.location.href = 'profile.html';
@@ -139,27 +169,6 @@ if (loginForm) {
           errorMessage += error.message;
       }
       showError(errorMessage);
-    }
-  });
-}
-
-// Profile Page Functionality
-const emailSpan = document.getElementById('user-email');
-const accountCreatedSpan = document.getElementById('account-created');
-
-if (emailSpan) {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in
-      emailSpan.textContent = user.email;
-      
-      if (accountCreatedSpan) {
-        const creationDate = new Date(user.metadata.creationTime);
-        accountCreatedSpan.textContent = creationDate.toLocaleDateString();
-      }
-    } else {
-      // User is signed out
-      window.location.href = 'login.html';
     }
   });
 }
@@ -225,10 +234,10 @@ if (logoutBtn) {
       await signOut(auth);
       showSuccess('Logged out successfully. Redirecting...');
       setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'login.html';
       }, 1500);
     } catch (error) {
       showError('Logout failed: ' + error.message);
     }
   });
-            }
+}
