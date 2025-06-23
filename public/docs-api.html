@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentasi API DanzuHub</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --code-bg: #f0f0f0;
+      --pre-bg: #f8f8f8;
+      --border-color: #e0e0e0;
+      --primary-color: #4a6baf;
+      --secondary-color: #6c757d;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1e1e1e;
+      --text-color: #f0f0f0;
+      --code-bg: #2d2d2d;
+      --pre-bg: #252525;
+      --border-color: #444;
+      --primary-color: #6b8cff;
+      --secondary-color: #adb5bd;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3 {
+      color: var(--primary-color);
+    }
+
+    h1 {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      padding-bottom: 0.3rem;
+    }
+
+    code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      background: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--pre-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 2rem 0;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      z-index: 100;
+    }
+
+    .info-box {
+      background: var(--pre-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+      color: var(--secondary-color);
+    }
+
+    .endpoint-method {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25em 0.4em;
+      font-size: 75%;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: 0.25rem;
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">Mode Gelap</button>
+
+  <h1>Dokumentasi API DanzuHub</h1>
+  <p>Selamat datang di dokumentasi API DanzuHub. Anda dapat mengunggah file langsung ke DanzuHub menggunakan <code>curl</code> atau melalui endpoint API dengan bot Anda.</p>
+
+  <div class="info-box">
+    <h3>📌 Fitur Utama</h3>
+    <ul>
+      <li>API unggah file sederhana dengan respons URL langsung</li>
+      <li>Tidak memerlukan autentikasi (API publik)</li>
+      <li>Waktu respons cepat</li>
+      <li>URL yang rapi (<code>danzuhub.my.id/u/[namafile]</code>)</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2>🔹 Endpoint API</h2>
+  <p>
+    <span class="endpoint-method">POST</span> 
+    <code>https://danzuhub.my.id/api/upload</code>
+  </p>
+
+  <h2>🔹 Parameter Request</h2>
+  <ul>
+    <li>
+      <code>file</code> <span class="badge">wajib</span> 
+      - File yang akan diunggah (mendukung semua jenis file umum)
+    </li>
+  </ul>
+
+  <h2>🔹 Contoh Request (cURL)</h2>
+  <pre><code>curl -F "file=@contoh.jpg" https://danzuhub.my.id/api/upload</code></pre>
+
+  <h2>🔹 Respons Berhasil</h2>
+  <pre><code>{
+  "success": true,
+  "url": "https://danzuhub.my.id/u/abc123.jpg",
+  "filename": "abc123.jpg",
+  "size": 1024,
+  "timestamp": 1620000000
+}</code></pre>
+
+  <h2>🔹 Respons Gagal</h2>
+  <pre><code>{
+  "success": false,
+  "message": "Gagal mengunggah file",
+  "error": "Ukuran file melebihi batas",
+  "code": 413
+}</code></pre>
+
+  <hr>
+
+  <div class="info-box">
+    <h3>ℹ️ Informasi Tambahan</h3>
+    <p>File yang diunggah akan disimpan di server DanzuHub dengan URL yang mudah diingat.</p>
+    
+    <h4>Batas Penggunaan</h4>
+    <p>Saat ini tidak ada batasan ketat, tapi harap gunakan dengan bijak. Request berlebihan mungkin akan dibatasi sementara.</p>
+    
+    <h4>Pembatasan File</h4>
+    <ul>
+      <li>Ukuran maksimal file: 200MB</li>
+      <li>Jenis file yang didukung: Gambar, video, dokumen, dan arsip umum</li>
+      <li>File disimpan selamanya</li>
+    </ul>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateButtonText();
+    
+    themeToggle.addEventListener('click', () => {
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateButtonText();
+    });
+    
+    function updateButtonText() {
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      themeToggle.textContent = currentTheme === 'light' ? 'Mode Gelap' : 'Mode Terang';
+    }
+  </script>
+</body>
+</html>
