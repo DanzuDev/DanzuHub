@@ -1,15 +1,20 @@
-/* Base Styles */
+/* Dark Theme Variables */
 :root {
-  --primary-color: #4a6bff;
-  --secondary-color: #f5f7ff;
-  --text-color: #333;
-  --light-text: #666;
-  --error-color: #e74c3c;
-  --success-color: #2ecc71;
-  --border-color: #ddd;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --primary-color: #6c5ce7;
+  --primary-hover: #5649c0;
+  --secondary-color: #2d3436;
+  --background-dark: #1e272e;
+  --background-darker: #171e24;
+  --card-bg: #2d3436;
+  --text-color: #f5f6fa;
+  --text-muted: #b2bec3;
+  --border-color: #3d484d;
+  --error-color: #ff7675;
+  --success-color: #55efc4;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +23,7 @@
 }
 
 body {
-  background-color: #f9f9f9;
+  background-color: var(--background-dark);
   color: var(--text-color);
   line-height: 1.6;
 }
@@ -30,21 +35,23 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  background-color: var(--background-darker);
 }
 
 .auth-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 10px;
   box-shadow: var(--shadow);
   padding: 40px;
   width: 100%;
   max-width: 450px;
   text-align: center;
+  border: 1px solid var(--border-color);
 }
 
-.logo {
-  width: 80px;
+.auth-card h1 {
   margin-bottom: 20px;
+  color: var(--text-color);
 }
 
 .auth-form {
@@ -60,27 +67,31 @@ body {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
+  color: var(--text-muted);
 }
 
 .form-group input {
   width: 100%;
   padding: 12px 15px;
+  background: var(--background-darker);
   border: 1px solid var(--border-color);
   border-radius: 5px;
   font-size: 16px;
-  transition: border 0.3s;
+  transition: all 0.3s;
+  color: var(--text-color);
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
 }
 
 .password-hint {
   display: block;
   margin-top: 5px;
   font-size: 12px;
-  color: var(--light-text);
+  color: var(--text-muted);
 }
 
 .forgot-password {
@@ -106,12 +117,13 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #3a5bef;
+  background-color: var(--primary-hover);
 }
 
 .auth-footer {
   margin-top: 20px;
   font-size: 14px;
+  color: var(--text-muted);
 }
 
 .auth-link {
@@ -124,13 +136,89 @@ body {
 .profile-container {
   display: flex;
   min-height: 100vh;
+  background-color: var(--background-dark);
 }
 
 .profile-sidebar {
-  width: 250px;
-  background: white;
-  padding: 30px;
-  box-shadow: var(--shadow);
+  width: 280px;
+  background: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+}
+
+.profile-nav {
+  padding: 30px 0;
+}
+
+.nav-header {
+  padding: 0 25px 25px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.nav-header h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.user-email {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-nav ul {
+  list-style: none;
+}
+
+.profile-nav li {
+  margin-bottom: 5px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  background-color: rgba(108, 92, 231, 0.1);
+  color: var(--text-color);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: rgba(108, 92, 231, 0.2);
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--primary-color);
+}
+
+.nav-link i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
 }
 
 .profile-content {
@@ -138,73 +226,79 @@ body {
   padding: 40px;
 }
 
+.profile-header {
+  margin-bottom: 30px;
+}
+
+.profile-header h1 {
+  font-size: 2rem;
+}
+
 .profile-info {
-  background: white;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.info-card {
+  background: var(--card-bg);
   border-radius: 8px;
   padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.info-card h2 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  font-size: 1.3rem;
 }
 
 .info-item {
   margin-bottom: 15px;
+  display: flex;
 }
 
 .info-label {
   font-weight: 500;
-  color: var(--light-text);
+  color: var(--text-muted);
   margin-right: 10px;
+  min-width: 150px;
 }
 
 .info-value {
   color: var(--text-color);
 }
 
-.profile-section {
-  background: white;
-  border-radius: 8px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: var(--shadow);
-}
-
 .profile-form {
   margin-top: 20px;
-}
-
-.btn-secondary {
-  background-color: white;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-secondary:hover {
-  background-color: var(--secondary-color);
 }
 
 /* Messages */
 .error-message {
   color: var(--error-color);
   margin-top: 20px;
-  padding: 10px;
+  padding: 12px 15px;
   border-radius: 5px;
-  background-color: rgba(231, 76, 60, 0.1);
+  background-color: rgba(255, 118, 117, 0.1);
+  border: 1px solid rgba(255, 118, 117, 0.3);
   display: none;
 }
 
 .success-message {
   color: var(--success-color);
   margin-top: 20px;
-  padding: 10px;
+  padding: 12px 15px;
   border-radius: 5px;
-  background-color: rgba(46, 204, 113, 0.1);
+  background-color: rgba(85, 239, 196, 0.1);
+  border: 1px solid rgba(85, 239, 196, 0.3);
   display: none;
 }
+
+/* Icons (using Unicode as fallback) */
+.icon-dashboard::before { content: "📊"; }
+.icon-profile::before { content: "👤"; }
+.icon-settings::before { content: "⚙️"; }
+.icon-logout::before { content: "🚪"; }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -214,9 +308,15 @@ body {
   
   .profile-sidebar {
     width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
   }
   
   .auth-card {
     padding: 30px 20px;
+  }
+  
+  .profile-info {
+    grid-template-columns: 1fr;
   }
 }
