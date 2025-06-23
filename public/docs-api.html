@@ -172,7 +172,7 @@
       <li>API unggah file sederhana dengan respons URL langsung</li>
       <li>Tidak memerlukan autentikasi (API publik)</li>
       <li>Waktu respons cepat</li>
-      <li>URL yang rapi (<code>danzuhub.my.id/u/[namafile]</code>)</li>
+      <li>URL yang rapi (<code>danzuhub.my.id/u/[nama]</code>)</li>
     </ul>
   </div>
 
@@ -198,18 +198,13 @@
   <h2>🔹 Respons Berhasil</h2>
   <pre><code>{
   "success": true,
-  "url": "https://danzuhub.my.id/u/abc123.jpg",
-  "filename": "abc123.jpg",
-  "size": 1024,
-  "timestamp": 1620000000
+  "url": "https://danzuhub.my.id/u/abc123.jpg"
 }</code></pre>
 
   <h2>🔹 Respons Gagal</h2>
   <pre><code>{
   "success": false,
-  "message": "Gagal mengunggah file",
-  "error": "Ukuran file melebihi batas",
-  "code": 413
+  "message": "Gagal mengunggah file"
 }</code></pre>
 
   <hr>
@@ -223,8 +218,8 @@
     
     <h4>Pembatasan File</h4>
     <ul>
-      <li>Ukuran maksimal file: 200MB</li>
-      <li>Jenis file yang didukung: Gambar, video, dokumen, dan arsip umum</li>
+      <li>Ukuran maksimal file: 50MB</li>
+      <li>Jenis file yang didukung: Semua Jenis File</li>
       <li>File disimpan selamanya</li>
     </ul>
   </div>
