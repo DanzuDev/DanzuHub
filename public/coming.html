@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanzuHub - Segera Hadir!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono&display=swap');
+    
+    :root {
+      --primary: #6e45e2;
+      --secondary: #88d3ce;
+      --dark: #0f0e1a;
+      --light: #ffffff;
+      --star-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Space Mono', monospace;
+      background: linear-gradient(135deg, var(--dark), #1a1a2e);
+      color: var(--light);
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(5px);
+      background-color: rgba(15, 14, 26, 0.5);
+      border-radius: 20px;
+      margin-top: 5vh;
+      box-shadow: 0 0 30px rgba(110, 69, 226, 0.3);
+    }
+    
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(110, 69, 226, 0.3);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+    }
+    
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 1.5rem;
+      min-width: 100px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .countdown-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(110, 69, 226, 0.3);
+    }
+    
+    .countdown-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--secondary);
+    }
+    
+    .notify-form {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+    
+    input[type="email"] {
+      padding: 1rem;
+      border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Space Mono', monospace;
+      width: 300px;
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+    }
+    
+    input[type="email"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(110, 69, 226, 0.5);
+    }
+    
+    button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--dark);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(110, 69, 226, 0.4);
+    }
+    
+    .social-links {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .social-link {
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .rocket {
+      position: absolute;
+      right: 10%;
+      top: 20%;
+      font-size: 3rem;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .planet {
+      position: absolute;
+      left: 10%;
+      bottom: 15%;
+      font-size: 8rem;
+      opacity: 0.7;
+      animation: rotate 30s linear infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        margin-top: 2vh;
+        padding: 1.5rem;
+      }
+      
+      .countdown {
+        gap: 1rem;
+      }
+      
+      .countdown-item {
+        min-width: 80px;
+        padding: 1rem;
+      }
+      
+      .countdown-number {
+        font-size: 2rem;
+      }
+      
+      .notify-form {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      input[type="email"] {
+        width: 100%;
+      }
+      
+      .rocket, .planet {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Stars -->
+  <div class="stars" id="stars"></div>
+  
+  <div class="container">
+    <h1>SEGERA HADIR!</h1>
+    <p>Nantikan Lah Fitur Terbaru Kami Nanti!</p>
+    
+    <div class="countdown">
+      <div class="countdown-item">
+        <div class="countdown-number" id="days">00</div>
+        <div class="countdown-label">Hari</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="hours">00</div>
+        <div class="countdown-label">Jam</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="minutes">00</div>
+        <div class="countdown-label">Menit</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="seconds">00</div>
+        <div class="countdown-label">Detik</div>
+      </div>
+    </div>
+    
+    <p>Beritahu saya ketika kami sudah siap:</p>
+    <form class="notify-form">
+      <input type="email" placeholder="Alamat email Anda" required>
+      <button type="submit">Beritahu Saya</button>
+    </form>
+    
+    <div class="social-links">
+      <a href="#" class="social-link">📱</a>
+      <a href="#" class="social-link">📧</a>
+      <a href="#" class="social-link">💬</a>
+      <a href="#" class="social-link">🔗</a>
+    </div>
+  </div>
+  
+  <div class="rocket">🚀</div>
+  <div class="planet">🪐</div>
+  
+  <script>
+    // Create stars
+    const stars = document.getElementById('stars');
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.style.position = 'absolute';
+      star.style.width = `${Math.random() * 3}px`;
+      star.style.height = star.style.width;
+      star.style.backgroundColor = 'white';
+      star.style.borderRadius = '50%';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.opacity = Math.random();
+      star.style.animation = `twinkle ${5 + Math.random() * 10}s ease-in-out infinite`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      stars.appendChild(star);
+    }
+    
+    // Countdown timer
+    const countdownDate = new Date();
+    countdownDate.setDate(countdownDate.getDate() + 14);
+    
+    function updateCountdown() {
+      const now = new Date();
+      const diff = countdownDate - now;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Form submission
+    document.querySelector('.notify-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input').value;
+      alert(`Terima kasih! Kami akan mengirimkan pemberitahuan ke ${email} ketika kami sudah siap.`);
+      this.querySelector('input').value = '';
+    });
+  </script>
+</body>
+</html>
