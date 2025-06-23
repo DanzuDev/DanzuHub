@@ -3,7 +3,7 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 
-// Konfigurasi multer untuk menyimpan file sementara di /tmp
+// Simpan file sementara di /tmp (aman di Vercel)
 const upload = multer({ dest: '/tmp' });
 
 module.exports = (req, res) => {
@@ -24,7 +24,7 @@ module.exports = (req, res) => {
         headers: formData.getHeaders()
       });
 
-      // Hapus file dari /tmp setelah upload
+      // Hapus file dari /tmp
       fs.unlinkSync(filePath);
 
       const filename = response.data.split('/').pop();
@@ -32,11 +32,9 @@ module.exports = (req, res) => {
 
       res.status(200).json({
         success: true,
-        url: customURL,
-        original: response.data
+        url: customURL
       });
     } catch (uploadError) {
-      // Hapus file kalau error
       fs.unlinkSync(filePath);
       res.status(500).json({
         success: false,
