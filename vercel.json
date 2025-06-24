@@ -4,5 +4,37 @@
       "source": "/u/:filename",
       "destination": "https://files.catbox.moe/:filename"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/profile",
+      "destination": "/profile.html",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "/login.html",
+      "permanent": true
+    },
+    {
+      "source": "/register",
+      "destination": "/register.html",
+      "permanent": true
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs-api.html",
+      "permanent": true
+    },
+    {
+      "source": "/comming",
+      "destination": "/coming.html",
+      "permanent": true
+    },
+    {
+      "source": "/dash",
+      "destination": "/index.html",
+      "permanent": true
+    }
   ]
 }
