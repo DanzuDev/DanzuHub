@@ -61,8 +61,8 @@ const checkAuthState = () => {
     
     if (user) {
       // User is logged in
-      if (currentPage === 'login.html' || currentPage === 'register.html') {
-        window.location.href = 'profile.html';
+      if (currentPage === '/login' || currentPage === '/register') {
+        window.location.href = '/profile';
       }
       
       // Update profile information
@@ -78,8 +78,8 @@ const checkAuthState = () => {
       }
     } else {
       // User is not logged in
-      if (currentPage === 'profile.html') {
-        window.location.href = 'login.html';
+      if (currentPage === '/profile') {
+        window.location.href = '/login';
       }
     }
   });
@@ -234,7 +234,7 @@ if (logoutBtn) {
       await signOut(auth);
       showSuccess('Logged out successfully. Redirecting...');
       setTimeout(() => {
-        window.location.href = 'login.html';
+        window.location.href = '/login';
       }, 1500);
     } catch (error) {
       showError('Logout failed: ' + error.message);
