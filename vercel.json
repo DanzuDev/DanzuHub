@@ -3,38 +3,30 @@
     {
       "source": "/u/:filename",
       "destination": "https://files.catbox.moe/:filename"
-    }
-  ],
-  "redirects": [
+    },
     {
       "source": "/profile",
-      "destination": "/profile.html",
-      "permanent": true
+      "destination": "/profile.html"
     },
     {
       "source": "/login",
-      "destination": "/login.html",
-      "permanent": true
+      "destination": "/login.html"
     },
     {
       "source": "/register",
-      "destination": "/register.html",
-      "permanent": true
+      "destination": "/register.html"
     },
     {
       "source": "/docs",
-      "destination": "/docs-api.html",
-      "permanent": true
+      "destination": "/docs-api.html"
     },
     {
       "source": "/comming",
-      "destination": "/coming.html",
-      "permanent": true
+      "destination": "/coming.html"
     },
     {
       "source": "/dash",
-      "destination": "/index.html",
-      "permanent": true
+      "destination": "/index.html"
     }
   ]
 }
